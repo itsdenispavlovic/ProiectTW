@@ -8,6 +8,8 @@ $fname = $_POST['fname'];
 
 $lname = $_POST['lname'];
 
+$password = $_POST['password'];
+
 // echo $username . " " . $fname . " " . $lname;
 
 // insert query

@@ -19,6 +19,9 @@
 
         <label for="Lastname">Lastname</label>
         <input type="text" name="lname" id="lname" placeholder="Please enter your lastname"><br />
+
+        <label for="Password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Please enter your password"><br />
         <input id="regB" type="submit" value="Register">
     </form>
 
