@@ -42,5 +42,40 @@ class User
             }
         }
     }
+
+
+    // Login
+    public function login($username, $password)
+    {
+        // Verify if username exist already, if yes continue
+        try
+        {
+            $statement = $this->db->prepare("SELECT * FROM users WHERE username=:username");
+            $statement->bindParam(":username", $username, PDO::PARAM_STR);
+            $statement->execute();
+
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($statement->rowCount() > 0)
+            {
+                if(password_verify($password, $row['password']))
+                {
+                    $_SESSION['user'] = $row['id'];
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    // Logout
+
+    // Is logged in
 }
 ?>

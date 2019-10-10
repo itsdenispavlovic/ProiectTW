@@ -20,9 +20,7 @@
 		<h1>A simple registration page</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form id="registrationForm">
-                    <input class="text" type="text" name="fname" placeholder="Firstname" required="">
-                    <input class="text" type="text" name="lname" placeholder="Lastname" required="">
+				<form id="loginForm">
 					<input class="text" type="text" name="username" placeholder="Username" required="">
 					<!-- <input class="text email" type="email" name="email" placeholder="Email" required=""> -->
 					<input class="text" type="password" name="password" placeholder="Password" required="">
@@ -34,9 +32,9 @@
 						</label>
 						<div class="clear"> </div>
 					</div> -->
-					<input id="regB" class="btn btn-info" type="submit" value="Register">
+					<input id="logB" class="btn btn-info" type="submit" value="Register">
 				</form>
-				<p>Have an Account? <a href="login.php"> Login Now!</a></p>
+				<p>Don't have an Account? <a href="registration.php"> Register Now!</a></p>
 			</div>
 		</div>
 		<div class="colorlibcopy-agile">
@@ -59,19 +57,19 @@
     
     <script>
             $(document).ready(() => {
-                $('#regB').click((e) => {
+                $('#logB').click((e) => {
                     e.preventDefault();
         
                     $.ajax
                     ({
                         type: 'POST',
-                        url: 'regC.php',
-                        data: $('#registrationForm').serialize(),
+                        url: 'logC.php',
+                        data: $('#loginForm').serialize(),
                         success: (response) => {
                             alert(response);
                             if(response == 1)
                             {
-                                alert("Account has been created!");
+                                alert("Is now logged in!");
                             }
                         }
                     });
