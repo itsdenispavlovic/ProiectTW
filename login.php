@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register</title>
+<title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -17,7 +17,7 @@
 <body>
 	<!-- main -->
 	<div class="main-w3layouts wrapper">
-		<h1>A simple registration page</h1>
+		<h1>A simple login page</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
 				<form id="loginForm">
@@ -32,7 +32,14 @@
 						</label>
 						<div class="clear"> </div>
 					</div> -->
-					<input id="logB" class="btn btn-info" type="submit" value="Register">
+                    <input id="logB" class="btn btn-info" type="submit" value="Login">
+                    
+                    <hr>
+                    <h3 style="text-align:center; color: white">Or login with</h3>
+                    <fb:login-button 
+                    scope="public_profile,email"
+                    onlogin="checkLoginState();">
+                    </fb:login-button>
 				</form>
 				<p>Don't have an Account? <a href="registration.php"> Register Now!</a></p>
 			</div>
@@ -76,5 +83,32 @@
                 });
             });
             </script>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2427939037490589',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v4.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+
+    FB.login(function(response){
+        location.href("registration.php");
+    });
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>
