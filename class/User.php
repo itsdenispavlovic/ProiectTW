@@ -75,7 +75,26 @@ class User
     }
 
     // Logout
+    public function logout($sess)
+    {
+        session_destroy();
+        unset($sess);
+        return true;
+    }
 
     // Is logged in
+    public function isLoggedin()
+    {
+        if(isset($_SESSION['user']))
+        {
+            return true;
+        }
+    }
+
+    // Location
+    public function redirect($url)
+    {
+        header("Location: " . $url);
+    }
 }
 ?>

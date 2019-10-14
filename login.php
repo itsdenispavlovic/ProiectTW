@@ -35,11 +35,6 @@
                     <input id="logB" class="btn btn-info" type="submit" value="Login">
                     
                     <hr>
-                    <h3 style="text-align:center; color: white">Or login with</h3>
-                    <fb:login-button 
-                    scope="public_profile,email"
-                    onlogin="checkLoginState();">
-                    </fb:login-button>
 				</form>
 				<p>Don't have an Account? <a href="registration.php"> Register Now!</a></p>
 			</div>
@@ -73,10 +68,12 @@
                         url: 'logC.php',
                         data: $('#loginForm').serialize(),
                         success: (response) => {
-                            alert(response);
+                            // alert(response);
                             if(response == 1)
                             {
                                 alert("Is now logged in!");
+                                // If we move to server, change it on /
+                                location.href = "index.php";
                             }
                         }
                     });
@@ -85,30 +82,6 @@
             </script>
 
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '2427939037490589',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v4.0'
-    });
-      
-    FB.AppEvents.logPageView();   
 
-    FB.login(function(response){
-        location.href("registration.php");
-    });
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 </body>
 </html>

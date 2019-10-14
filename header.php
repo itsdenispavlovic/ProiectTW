@@ -1,3 +1,6 @@
+<?php
+include 'connDB.php'; 
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -51,7 +54,7 @@
                   <li><a href="#">Account settings</a></li>
                   <li><a href="#">Privacy settings</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Logout</a></li>
+                  <li><a href="logout">Logout</a></li>
                 </ul>
               </li>
             </ul>
@@ -59,25 +62,3 @@
         </div><!-- /.container-fluid -->
       </nav>
       <br>
-      <!-- Content -->
-      <div class="container">
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <h2>Welcome back, {{firstname}}</h2>
-                <hr>
-                <h1>Newsfeed</h1>
-                <textarea name="writeaPost" id="post" cols="70" rows="6" style="width: 100%; border: 0.5px solid black;resize: none; border-radius: 20px;" ></textarea>
-                <a href="#" style="float: right"id="writePost" class="btn btn-info">POST</a>
-            </div>
-            <div class="col-sm-3"></div>
-          </div>
-      </div>
-      <!-- End Content -->
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-  </body>
-</html>
