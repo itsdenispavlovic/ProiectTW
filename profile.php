@@ -1,5 +1,6 @@
 <?php 
 include 'header.php'; 
+$active = 1;
 ?>
 
 <!-- Content -->
