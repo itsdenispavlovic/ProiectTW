@@ -1,0 +1,1 @@
+<img id="" src="users/<?php echo $uid; ?>/profilePic/111.jpeg" width="200px" style="border: 2px solid skyblue;" alt="">

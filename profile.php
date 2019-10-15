@@ -1,24 +1,32 @@
 <?php 
 include 'header.php'; 
-$uid = $_SESSION['user'];
 ?>
 
 <!-- Content -->
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-            {{PROFILEPIC}}
+            <!-- {{PROFILEPIC}} -->
             <!-- Profile settings algorithm -->
             <!-- From database -->
-            <img id="" src="users/<?php echo $uid; ?>/profilePic/111.jpeg" width="200px" style="border: 2px solid skyblue;" alt="">
+            <?php include 'profilepic.php'; ?>
         </div>
         <div class="col-sm-6" style="padding-top: 10%">
-            {{POST ZONE, need to add and textarea like on the newsfeed}}
+            <!-- {{POST ZONE, need to add and textarea like on the newsfeed}} -->
+
+            <!-- ADD A POST -->
+            <?php include 'addPOST.php'; ?>
+            <!-- END OF ADDING A POST -->
+            
             <!-- add from database -->
+            <div class="row">
+            <br><br>
+            </div>
             <div id="postss"></div>
         </div>
         <div class="col-sm-3">
-            {{QUICK LINKS}}
+            <!-- {{QUICK LINKS}} -->
+            <?php include 'sidebar.php'; ?>
         </div>
     </div>
 </div>
