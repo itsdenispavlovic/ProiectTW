@@ -71,7 +71,7 @@
                             // alert(response);
                             if(response == 1)
                             {
-                                alert("Is now logged in!");
+                                // alert("Is now logged in!");
                                 // If we move to server, change it on /
                                 location.href = "index.php";
                             }

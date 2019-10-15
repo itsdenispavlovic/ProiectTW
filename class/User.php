@@ -74,6 +74,82 @@ class User
         }
     }
 
+    // Get First name
+    public function getFirstName($uid)
+    {
+        try 
+        {
+            // Add after you add feature activation account
+            $statement = $this->db->prepare("SELECT * FROM users WHERE id = :uid");
+            $statement->bindParam(":uid", $uid, PDO::PARAM_INT);
+            $statement->execute();
+
+            $row=$statement->fetch(PDO::FETCH_ASSOC);
+
+            if($statement->rowCount() > 0)
+            {
+                echo $row['fname'];
+            }
+
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    // Get username
+    public function getUsername($uid)
+    {
+        try 
+        {
+            $statement = $this->db->prepare("SELECT * FROM users WHERE id=:uid");
+            $statement->bindParam(':uid', $uid, PDO::PARAM_STR);
+            $statement->execute();
+
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($statement->rowCount() > 0)
+            {
+                // Daca exista o sa apara ceva
+                echo $row['username'];
+            }
+            else
+            {
+                echo "No username found!";
+            }
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    // Add post
+    public function addPost($postContent, $uid)
+    {
+        try 
+        {
+            // bagam dupa si dubla securitate daca exista deja, nu poate orice sa posteze, o sa fie si filtrat
+            // acu lasam doar un simplu insert
+            $statement = $this->db->prepare("INSERT INTO posts (postContent, uid) VALUES(:postContent, :uid)");
+            $statement->execute(array(
+                ':postContent' => $postContent,
+                ':uid' => $uid
+            ));
+
+            return true;
+
+        } catch (PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    // Edit post
+
+    // Delete post (hide)
+
+    // Show
+
     // Logout
     public function logout($sess)
     {

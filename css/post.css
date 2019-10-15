@@ -1,0 +1,24 @@
+.headerPost
+{
+    width: 100%;
+    height: 20%;
+}
+
+.postContent
+{
+    width: 100%;
+    height: 40%;
+    padding-top: 12px;
+    padding-bottom: 13px;
+}
+
+.footerPost
+{
+    width: 100% !important;
+    height: 10%;
+}
+
+.ffRight
+{
+    float: right;
+}
