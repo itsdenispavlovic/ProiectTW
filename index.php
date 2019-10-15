@@ -9,8 +9,7 @@ if(!$user->isLoggedin())
 }
 
 ?>
-<!-- POST CSS -->
-<link href="css/post.css" rel="stylesheet" />
+
 <!-- Content -->
 <div class="container">
 <div class="row">

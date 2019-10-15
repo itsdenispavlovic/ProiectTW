@@ -1,3 +1,5 @@
+<!-- POST CSS -->
+<link href="css/post.css" rel="stylesheet" />
 <?php
 
         // foreach
