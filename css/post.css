@@ -1,3 +1,11 @@
+#post
+{
+    padding: 15px;
+    font-size: 13px;
+    outline: none; /* removes the default outline */
+    resize: none; /* prevents the user-resizing, adjust to taste */
+}
+
 .headerPost
 {
     width: 100%;
