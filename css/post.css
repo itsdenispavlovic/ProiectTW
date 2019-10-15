@@ -6,6 +6,11 @@
     resize: none; /* prevents the user-resizing, adjust to taste */
 }
 
+.pp
+{
+    margin-bottom: 20px;
+}
+
 .headerPost
 {
     width: 100%;

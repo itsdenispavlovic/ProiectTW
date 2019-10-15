@@ -20,7 +20,7 @@ if(!$user->isLoggedin())
         <hr>
         <h1>Newsfeed</h1>
         <form id="ssForm">
-        <textarea name="writeaPost" id="post" onkeydown="countChar(this)" onkeyup="countChar(this)" max="1000" maxlength="1000" cols="70" rows="6" style="width: 100%; border: 0.5px solid black;resize: none; border-radius: 20px;" spellcheck="false"></textarea>
+        <textarea name="writeaPost" id="post" class="wPOST" onkeydown="countChar(this)" onkeyup="countChar(this)" max="1000" maxlength="1000" cols="70" rows="6" style="width: 100%; border: 0.5px solid black;resize: none; border-radius: 20px;" spellcheck="false"></textarea>
         <input type="text" name="uid" hidden value="<?php echo $uid; ?>"/>
         <span style="float: left;" id="counter"></span>
         <input type="submit" id="writePost" style="float: right" class="btn btn-info" value="POST">
@@ -52,7 +52,7 @@ if(!$user->isLoggedin())
         try
         {
           // momentan arata doar postarile pe care le posteaza user-ul logat
-          $showPost = $conn->prepare("SELECT * FROM posts WHERE hidden=0 AND uid=:uid");
+          $showPost = $conn->prepare("SELECT * FROM posts WHERE hidden=0 AND uid=:uid ORDER BY id DESC");
           $showPost->bindParam(':uid', $uid, PDO::PARAM_INT);
           $showPost->execute();
           $rows = $showPost->fetchAll();
@@ -61,9 +61,10 @@ if(!$user->isLoggedin())
             foreach($rows as $row)
             {
               ?>
-              <div class="row" style="border: 1px solid black; padding: 10px;">
+              <div class="row pp" style="border: 1px solid black; padding: 10px;">
                 <div class="headerPost">
                 <b>#<?php echo $row['id']; ?></b>
+                <a href="#" id="delete<?php echo $row['id']; ?>" style="float: right">X</a>
                 </div>
                 <div class="postContent">
                   <?php echo $row['postContent']; ?>
@@ -76,6 +77,24 @@ if(!$user->isLoggedin())
                 </div>
                 <!-- Create a script for like and dislike for real time voting -->
 
+                <!-- Script for deleting posts // Hiding posts -->
+                <script>
+                  $(document).ready(() => {
+                    $('#delete<?php echo $row['id']; ?>').click((e) => {
+                      e.preventDefault();
+
+                      // Ajax for deleting post
+                      $.ajax
+                      ({
+                        url: 'delPP.php?idppp=<?php echo $row['id']; ?>',
+                        success: (response) =>
+                        {
+                          alert(response);
+                        }
+                      });
+                    });
+                  });
+                </script>
               </div>
               <?php
               // echo $row['postContent'];
@@ -105,7 +124,14 @@ if(!$user->isLoggedin())
         url: 'sendPost.php',
         data: $('#ssForm').serialize(),
         success: (response) => {
-          alert(response);
+          // alert(k);
+          if(response == 1)
+          {
+            $('.wPOST').val('');
+            $('#counter').text(1000);
+            // Message that is had been posted
+
+          }
         }
       })
     });

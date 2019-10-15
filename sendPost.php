@@ -10,7 +10,7 @@ $postContent = $_POST['writeaPost'];
 
 if($user->addPost($postContent, $uid))
 {
-    echo "ADDED";
+    echo "1";
 }
 
 ?>

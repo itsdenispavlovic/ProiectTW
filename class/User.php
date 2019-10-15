@@ -147,6 +147,23 @@ class User
     // Edit post
 
     // Delete post (hide)
+    public function hidepost($postid)
+    {
+        try
+        {
+            $statement = $this->db->prepare("UPDATE posts SET hidden=1 WHERE id=:postid");
+            $statement->bindParam(':postid', $postid, PDO::PARAM_INT);
+            $statement->execute();
+
+            if($statement->rowCount() > 0)
+            {
+                return true;
+            }
+        } catch (PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 
     // Show
 
