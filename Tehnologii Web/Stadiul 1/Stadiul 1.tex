@@ -1,0 +1,42 @@
+\documentclass[a4paper12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{geometry}
+\graphicspath{ {./images/} }
+
+\title{Stadiul 1 - Implementare Proiect TW}
+\author{Denis Pavlovic, Fabian Sirbu, Mihai Lucian}
+\date{October 2019}
+
+% Definition of \maketitle
+\makeatletter         
+\def\@maketitle{
+\raggedright
+
+\begin{center}
+\vspace*{150px}
+{\Huge \bfseries \sffamily \@title }\\[4ex] 
+{\Large  \@author}\\[4ex] 
+\@date\\[8ex]
+\vspace*{50px}
+\includegraphics[width = 40mm]{FMI.png}
+\end{center}}
+\makeatother
+
+
+\begin{document}
+
+\maketitle
+% \thispagestyle{empty}
+\newpage
+
+\tableofcontents
+
+\newpage
+\vspace{2.5cm}
+\section{Abstract}
+
+\newpage
+\section{Introduction}
+
+\end{document}

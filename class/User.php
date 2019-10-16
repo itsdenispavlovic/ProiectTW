@@ -43,6 +43,66 @@ class User
         }
     }
 
+    // Change password
+    public function changePassword($uid, $oldPassword, $newPassword, $repeatNewPassword)
+    {
+        try 
+        {
+            // first verify if old password is right written
+            $statement = $this->db->prepare("SELECT * FROM users WHERE id=:uid");
+            $statement->bindParam(':uid', $uid, PDO::PARAM_INT);
+            $statement->execute();
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($statement->rowCount() > 0)
+            {
+                // Verify if old password si correct written
+                $oldPassFromDB = $row['password'];
+                if(password_verify($oldPassword, $oldPassFromDB))
+                {
+                    // Continue
+                    // Verify for newPassword
+                    if(password_verify($newPassword, $repeatNewPassword))
+                    {
+                        // Continue
+                        // Update the old password with the new one
+                        $updatePassword = $this->db->prepare('UPDATE users SET password=:newpassword WHERE id=:uid');
+                        $updatePassword->execute(array(
+                            ":uid" => $uid,
+                            ":newpassword" => $newPassword
+                        ));
+
+                        return true;
+
+                        // password changed
+                    }
+                    else
+                    {
+                        // 3 - Incorrect newpassword + repeat
+                        echo 3;
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    // 2 - incorrect old password
+                    echo 2;
+                    return false;
+                }
+            }
+            else
+            {
+                // 1 - user not found
+                echo 1;
+                return false;
+            }
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
 
     // Login
     public function login($username, $password)
@@ -164,8 +224,6 @@ class User
             echo $e->getMessage();
         }
     }
-
-    // Show
 
     // Logout
     public function logout($sess)
