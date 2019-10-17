@@ -104,6 +104,32 @@ class User
         }
     }
 
+    // Change name
+    public function changeName($uid, $fname, $lname)
+    {
+        try
+        {
+            // Intai sa vedem daca e gol sau nu
+            if($fname == "" || $lname == "")
+            {
+                echo 1;
+                return false;
+            }
+
+            $statement = $this->db->prepare("UPDATE users SET fname=:fname, lname=:lname WHERE id=:uid");
+            $statement->execute(array(
+                ':uid' => $uid,
+                ':fname' => $fname,
+                ':lname' => $lname
+            ));
+
+            return true;
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
 
     // Login
     public function login($username, $password)

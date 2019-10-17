@@ -53,7 +53,7 @@ include 'connDB.php';
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Account settings</a></li>
+                  <li><a href="accountSettings">Account settings</a></li>
                   <li><a href="#">Privacy settings</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="logout">Logout</a></li>

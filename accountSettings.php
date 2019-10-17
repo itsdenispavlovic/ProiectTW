@@ -33,10 +33,10 @@ $active = 2;
 
             <form id="changeName" style="display:none">
                 <div class="form-group">
-                    <input type="text" name="firstname" class="form-control" placeholder="Enter your firstname" value="<?php echo $user->getFirstName($uid); ?>">
+                    <input type="text" name="fname" class="form-control" placeholder="Enter your firstname" value="<?php echo $user->getFirstName($uid); ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="lastname" class="form-control" placeholder="Enter your lastname" value="<?php echo $user->getLastName($uid); ?>">
+                    <input type="text" name="lname" class="form-control" placeholder="Enter your lastname" value="<?php echo $user->getLastName($uid); ?>">
                 </div>
                 
                 <input type="text" hidden name="uid" value=<?php echo $uid; ?>>
@@ -69,6 +69,23 @@ $active = 2;
                 e.preventDefault();
 
                 // Ajax
+                $.ajax
+                ({
+                    method: 'POST',
+                    url: 'chName.php',
+                    data: $('#changeName').serialize(),
+                    success: (response) => {
+                        // alert(response);
+                        if(response == 1)
+                        {
+                            alert("You can't leave empty!");
+                        }
+                        else
+                        {
+                            alert("Successfully name changed!");
+                        }
+                    }
+                });
             });
 
             $('#chpassw').click((e) => {
@@ -81,7 +98,13 @@ $active = 2;
                     url: 'chPass.php',
                     data: $('#changePassword').serialize(),
                     success: (response) => {
-                        alert(response);
+                        // alert(response);
+                        if(response=="success")
+                        {
+                            // Create models for success using bootstrap
+                            // For now we are using alert normal
+                            alert("You have successfully changed your password!");
+                        }
                     }
                 });
             });
