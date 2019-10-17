@@ -62,14 +62,15 @@ class User
                 {
                     // Continue
                     // Verify for newPassword
-                    if(password_verify($newPassword, $repeatNewPassword))
+                    if($newPassword == $repeatNewPassword)
                     {
                         // Continue
+                        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                         // Update the old password with the new one
                         $updatePassword = $this->db->prepare('UPDATE users SET password=:newpassword WHERE id=:uid');
                         $updatePassword->execute(array(
                             ":uid" => $uid,
-                            ":newpassword" => $newPassword
+                            ":newpassword" => $hashedPassword
                         ));
 
                         return true;
@@ -149,6 +150,29 @@ class User
             if($statement->rowCount() > 0)
             {
                 echo $row['fname'];
+            }
+
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    // Get last name
+    public function getLastName($uid)
+    {
+        try 
+        {
+            // Add after you add feature activation account
+            $statement = $this->db->prepare("SELECT * FROM users WHERE id = :uid");
+            $statement->bindParam(":uid", $uid, PDO::PARAM_INT);
+            $statement->execute();
+
+            $row=$statement->fetch(PDO::FETCH_ASSOC);
+
+            if($statement->rowCount() > 0)
+            {
+                echo $row['lname'];
             }
 
         } catch(PDOException $e)

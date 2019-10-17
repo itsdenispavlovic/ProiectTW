@@ -19,28 +19,28 @@ $active = 2;
             <br><br>
             <form id="changePassword" style="display:none">
                 <div class="form-group">
-                    <input type="text" name="oldPass" class="form-control" placeholder="Enter your old password">
+                    <input type="password" name="oldPass" class="form-control" placeholder="Enter your old password">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="newPass" class="form-control" placeholder="Enter your new password">
+                    <input type="password" name="newPass" class="form-control" placeholder="Enter your new password">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="newPassRep" class="form-control" placeholder="Repeat your new password">
+                    <input type="password" name="newPassRep" class="form-control" placeholder="Repeat your new password">
                 </div>
                 <input type="text" hidden name="uid" value=<?php echo $uid; ?>>
-                <input type="submit" class="btn btn-info" value="Change password">
+                <input type="submit" class="btn btn-info" id="chpassw" value="Change password">
             </form>
 
             <form id="changeName" style="display:none">
                 <div class="form-group">
-                    <input type="text" name="firstname" class="form-control" placeholder="Enter your firstname">
+                    <input type="text" name="firstname" class="form-control" placeholder="Enter your firstname" value="<?php echo $user->getFirstName($uid); ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="lastname" class="form-control" placeholder="Enter your lastname">
+                    <input type="text" name="lastname" class="form-control" placeholder="Enter your lastname" value="<?php echo $user->getLastName($uid); ?>">
                 </div>
                 
                 <input type="text" hidden name="uid" value=<?php echo $uid; ?>>
-                <input type="submit" class="btn btn-info" value="Change name">
+                <input type="submit" id="cnbt" class="btn btn-info" value="Change name">
             </form>
         </div>
         <div class="col-sm-3">
@@ -63,6 +63,27 @@ $active = 2;
                 $('#changeName').toggle(500);
 
                 $('#changePassword').hide();
+            });
+
+            $('#cnbt').click((e) => {
+                e.preventDefault();
+
+                // Ajax
+            });
+
+            $('#chpassw').click((e) => {
+                e.preventDefault();
+
+                // Ajax
+                $.ajax
+                ({
+                    method: 'POST',
+                    url: 'chPass.php',
+                    data: $('#changePassword').serialize(),
+                    success: (response) => {
+                        alert(response);
+                    }
+                });
             });
         });
         </script>
