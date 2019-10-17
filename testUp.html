@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test for uploat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Upload image test</h1>
+    <hr>
+    <form id="uploadF" action="" method="POST" enctype="multipart/form-data">
+        <input type="file" id="imgTU" name="fileToUpload"> <input type="submit" id="upbutton" value="Upload" name="submit">
+    </form>
+    <script>
+    $(document).ready(() => {
+        // alert('merge');
+        // $('#upbutton').click((e) => {
+        //     e.preventDefault();
+        //     alert("fuck");
+        //     $.ajax
+        //     ({
+        //         type: "POST",
+        //         url: "testUploadimage.php",
+        //         data: $('#uploadF').serialize(),
+        //         success: (response) => {
+        //             alert(response);
+        //         }
+        //     });
+        // });
+
+        $('#uploadF').on('submit', (e) => {
+            e.preventDefault();
+
+            var fd = new FormData();
+            var files = $('#imgTU')[0].files[0];
+            fd.append('fileToUpload',files);
+
+            $.ajax
+            ({
+                url: 'testUploadImage.php',
+                type: "POST",
+                data: fd,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: (data) => {
+                    alert(data);
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
