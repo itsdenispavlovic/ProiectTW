@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2019 at 08:32 PM
+-- Generation Time: Oct 17, 2019 at 01:46 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `dislikes` int(11) NOT NULL DEFAULT '0',
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hidden` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
@@ -51,7 +51,9 @@ INSERT INTO `posts` (`id`, `postContent`, `uid`, `likes`, `dislikes`, `dateCreat
 (8, 'asdasdasd', 2, 0, 0, '2019-10-15 17:47:11', 1),
 (9, 'dasasdasd', 2, 0, 0, '2019-10-15 17:47:15', 1),
 (10, 'fadfadf', 2, 0, 0, '2019-10-15 17:47:18', 1),
-(11, 'asdadasda', 2, 0, 0, '2019-10-15 22:43:17', 0);
+(11, 'asdadasda', 2, 0, 0, '2019-10-15 22:43:17', 1),
+(12, 'asjdhasoudahs', 2, 0, 0, '2019-10-17 10:28:16', 1),
+(13, 'dsadasda', 2, 0, 0, '2019-10-17 15:05:29', 1);
 
 -- --------------------------------------------------------
 
@@ -84,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(125) NOT NULL,
   `fname` varchar(125) NOT NULL,
   `lname` varchar(125) NOT NULL,
+  `gender` tinyint(4) NOT NULL,
   `password` varchar(255) NOT NULL,
   `active` tinyint(4) NOT NULL DEFAULT '0',
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -93,9 +96,29 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `password`, `active`, `dateCreated`) VALUES
-(2, 'itsdenispavlovic', 'Denis', 'Pavlovic', '$2y$10$f99ycVxFhgiYabJGJRM3BuAoquvbc81zF0q1GZaud7gH9OOUK24mG', 0, '2019-10-09 23:00:53'),
-(3, 'adimiculescu', 'Adrian', 'Miculescu', '$2y$10$20TmVc80Nl9LpVDXIQFNIeokXf64kfrh3VDIF11VyYIhKK7oAkKBS', 0, '2019-10-09 23:37:07');
+INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `gender`, `password`, `active`, `dateCreated`) VALUES
+(2, 'itsdenispavlovic', 'Denis', 'Pavlovic', 0, '$2y$10$wg.MghKDG.vtSUUP15RgweV/Hbw3WJCc8JnSMGAvqd3IaoeAnhUCS', 0, '2019-10-09 23:00:53'),
+(3, 'adimiculescu', 'Adrian', 'Miculescu', 0, '$2y$10$20TmVc80Nl9LpVDXIQFNIeokXf64kfrh3VDIF11VyYIhKK7oAkKBS', 0, '2019-10-09 23:37:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_settings`
+--
+
+CREATE TABLE IF NOT EXISTS `user_settings` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `avatar` text NOT NULL,
+  `lastTimeChanged` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_settings`
+--
+
+INSERT INTO `user_settings` (`id`, `uid`, `avatar`, `lastTimeChanged`) VALUES
+(1, 2, 'users//uid2//avatar//Screen Shot 2019-10-16 at 11.15.19 PM.png', '2019-10-17 16:44:49');
 
 --
 -- Indexes for dumped tables
@@ -120,6 +143,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_settings`
+--
+ALTER TABLE `user_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -127,7 +156,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `profilepic`
 --
@@ -138,6 +167,11 @@ ALTER TABLE `profilepic`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `user_settings`
+--
+ALTER TABLE `user_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
