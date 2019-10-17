@@ -207,6 +207,29 @@ class User
         }
     }
 
+    // Get fullname
+    public function getFullName($uid)
+    {
+        try 
+        {
+            // Add after you add feature activation account
+            $statement = $this->db->prepare("SELECT * FROM users WHERE id = :uid");
+            $statement->bindParam(":uid", $uid, PDO::PARAM_INT);
+            $statement->execute();
+
+            $row=$statement->fetch(PDO::FETCH_ASSOC);
+
+            if($statement->rowCount() > 0)
+            {
+                echo $row['fname'] . ' ' . $row['lname'];
+            }
+
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
     // Get username
     public function getUsername($uid)
     {

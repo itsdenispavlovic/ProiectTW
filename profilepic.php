@@ -26,3 +26,15 @@ try
 }
 
 ?>
+
+<div class="container">
+    <div class="row">
+        <h3>
+            <?php echo $user->getFullName($uid); ?>
+        </h3>
+        <h4>
+        <!-- Working on linking via username, like /localhost/profile/{{username}} -->
+            @<?php echo $user->getUsername($uid); ?>
+        </h4>
+    </div>
+</div>
