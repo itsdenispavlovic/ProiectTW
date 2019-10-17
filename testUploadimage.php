@@ -64,82 +64,44 @@ else
     if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_file))
     {
         echo "The file " . basename($_FILES['fileToUpload']['name']) . " has been uploaded!";
+
+        // Continue to see if exist in database
+        try
+        {
+            $verifyImg = $conn->prepare("SELECT * FROM user_settings WHERE uid=:uid");
+            $verifyImg->bindParam(':uid', $uid, PDO::PARAM_INT);
+            $verifyImg->execute();
+
+            if($verifyImg->rowCount() > 0)
+            {
+                // User exist in database, we can only update
+                $updateImg = $conn->prepare("UPDATE user_settings SET avatar=:avatar WHERE uid=:uid");
+                $updateImg->execute(array(
+                    ":uid" => $uid,
+                    ":avatar" => $target_file
+                ));
+
+                return true;
+            }
+            else
+            {
+                // User does not exist in database so we need to insert
+                $insertImg = $conn->prepare("INSERT INTO user_settings (uid, avatar) VALUES (:uid, :avatar)");
+                $insertImg->execute(array(
+                    ':uid' => $uid,
+                    ':avatar' => $target_file
+                ));
+                
+                return true;
+            }
+        } catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
     }
     else
     {
         echo "Sorry, there was an erro uploading your file!";
     }
 }
-
-// // If $_FILES is not empty
-// if($_FILES['fileToUpload']['error'] != 4)
-// {
-//     $path = "users/uid".$uid."/avatar/";
-
-//     if(!is_dir($path))
-//     {
-//         mkdir($path, 0755, true);
-//         echo "PATH CREATED!";
-//     }
-
-//     // Image and image_tmp
-//     $img = $_FILES['fileToUpload']['name'];
-//     $img_tmp = $_FILES['fileToUpload']['tmp_name'];
-//     $path = $path . $img;
-
-//     // echo $img_tmp;
-
-//     // Check file size
-//     if($_FILES['fileToUpload']['size'] > 50000000)
-//     {
-//         die("Sorry, your file is too large.");
-//     }
-//     else
-//     {
-//         // If everything is ok, try to upload file
-//         if(move_uploaded_file($img_tmp, $path))
-//         {
-//             // Pentru a verifica dar sa inseram sau sa actualizam poza de profil, vedem daca exista deja in baza de date userul X
-//             try
-//             {
-//                 $verifyPic = $conn->prepare("SELECT * FROM user_settings WHERE uid=:uid");
-//                 $verifyPic->bindParam(':uid', $uid, PDO::PARAM_INT);
-//                 $verifyPic->execute();
-
-//                 if($verifyPic->rowCount() > 0)
-//                 {
-//                     // If exist than only update
-//                     $updatePic = $conn->prepare("UPDATE user_settings SET avatar=:avatar WHERE uid=:uid");
-//                     $updatePic->execute(array(
-//                         ':uid' => $uid,
-//                         ':avatar' => $path
-//                     )); 
-//                     return true;
-//                 }
-//                 else
-//                 {
-//                     // If not than insert a new one
-//                     $insertPic = $conn->prepare("INSERT INTO user_settings (uid, avatar) VALUES (:uid, :avatar)");
-//                     $insertPic->execute(array(
-//                         ':uid' => $uid,
-//                         ':avatar' => $path
-//                     ));
-
-//                     return true;
-//                 }
-//             } catch(PDOException $e)
-//             {
-//                 echo $e->getMessage();
-//             }
-//         }
-//         else
-//         {
-//             die("Sorry, there was an error uploading your file.");
-//         }
-//     }
-
-// }
-
-// 
-
 ?>
