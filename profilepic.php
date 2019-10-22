@@ -7,6 +7,11 @@ try
     $statement->execute();
     $row = $statement->fetch(PDO::FETCH_ASSOC);
 
+    $statement2 = $conn->prepare("SELECT * FROM users WHERE id=:uid");
+    $statement2->bindParam(':uid', $uid, PDO::PARAM_INT);
+    $statement2->execute();
+    $row2 = $statement2->fetch(PDO::FETCH_ASSOC);
+    
     if($statement->rowCount() > 0)
     {
         ?>
@@ -16,9 +21,22 @@ try
     else
     {
         // Add algorithm if it's a male or a female
+        $gender = $row2['gender'];
+        // 0 - male / 1 - female
+        if($gender == 0)
+        {
+        echo $gender;
+
         ?>
-            <img id="" src="users/defaultAvatarM.png" width="200px" alt="">
+            <img id="" src="users/maleDP.png" width="200px" alt="">
         <?php
+        }
+        else
+        {
+            ?>
+              <img id="" src="users/femaleDP.jpg" width="200px" alt="">
+            <?php
+        }
     }
 } catch(PDOException $e)
 {

@@ -7,7 +7,7 @@ class User
     }
 
     // Creating account
-    public function createAccount($username, $fname, $lname, $password)
+    public function createAccount($username, $fname, $lname, $password, $gender)
     {
         // Verify if account exists already
         $verifyEmail = $this->db->prepare("SELECT username FROM users WHERE username = :username");
@@ -23,14 +23,15 @@ class User
         {
             try
             {
-                $regStatement = $this->db->prepare('INSERT INTO users (username, fname, lname, password) VALUES (:username, :fname, :lname, :password)');
+                $regStatement = $this->db->prepare('INSERT INTO users (username, fname, lname, password, gender) VALUES (:username, :fname, :lname, :password, :gender)');
                 //HASHED PASSWORD
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 $regStatement->execute(array(
                     ':username' => $username,
                     ':fname' => $fname,
                     ':lname' => $lname,
-                    ':password' => $hashedPassword
+                    ':password' => $hashedPassword,
+                    ':gender' => $gender
                 ));
 
                 return true;

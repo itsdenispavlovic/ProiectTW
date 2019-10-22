@@ -10,11 +10,11 @@ $lname = $_POST['lname'];
 
 $password = $_POST['password'];
 
-// echo $username . " " . $fname . " " . $lname;
+$gender = $_POST['gender'];
 
-// insert query
+// echo $gender;
 
-if($user->createAccount($username, $fname, $lname, $password))
+if($user->createAccount($username, $fname, $lname, $password, $gender))
 {
     echo 1;
 }

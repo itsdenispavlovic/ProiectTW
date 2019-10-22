@@ -1,64 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Register</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="css/regDesign.css" rel="stylesheet" type="text/css" media="all" />
-<!-- //Custom Theme files -->
-<!-- web font -->
-<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
-<!-- //web font -->
-
+	<title>Register to Bookface</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<!-- main -->
-	<div class="main-w3layouts wrapper">
-		<h1>A simple registration page</h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
-				<form id="registrationForm">
-                    <input class="text" type="text" name="fname" placeholder="Firstname" required="">
-                    <input class="text" type="text" name="lname" placeholder="Lastname" required="">
-					<input class="text" type="text" name="username" placeholder="Username" required="">
-					<!-- <input class="text email" type="email" name="email" placeholder="Email" required=""> -->
-					<input class="text" type="password" name="password" placeholder="Password" required="">
-					<!-- <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required=""> -->
-					<!-- <div class="wthree-text">
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>I Agree To The Terms & Conditions</span>
-						</label>
-						<div class="clear"> </div>
-					</div> -->
-					<input id="regB" class="btn btn-info" type="submit" value="Register">
-				</form>
-				<p>Have an Account? <a href="login.php"> Login Now!</a></p>
+	<div class="limiter">
+		<div class="container-login100">
+		<!-- Bootstrap Modal  -->
+		<div class="modal fade" id="LoginError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header bg-danger">
+					<h5 class="modal-title text-light" id="exampleModalLabel">Wrong Credentials</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					You have entered wrong Credentials! Please try again.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+				</div>
 			</div>
 		</div>
-		<div class="colorlibcopy-agile">
-			<p>© 2019 Proiect TW</p>
+		<!-- End of bootstrap modal  -->
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+				<form id="registrationForm" class="login100-form validate-form">
+					<span class="login100-form-title p-b-33">
+						New here?
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Firstname is required">
+						<input class="input100" type="text" name="fname" placeholder="Firstname">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Lastname is required">
+						<input class="input100" type="text" name="lname" placeholder="Lastname">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="text" name="username" placeholder="Username">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
+					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
+					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
+						<h4>Gender</h4>
+						<input type="radio" name="gender" id="" value="0">Male<br/>
+						<input type="radio" name="gender" id="" value="1">Female
+					</div>
+
+					<div class="container-login100-form-btn m-t-20">
+						<button id="regB" class="login100-form-btn" type="submit">
+							Sign up
+						</button>
+					</div>
+					<div class="text-center p-t-45 p-b-4">
+                        <!--
+                        <span class="txt1">
+							Forgot
+						</span>
+
+						 <a href="#" class="txt2 hov1">
+							Username / Password?
+						</a> -->
+					</div>
+					<div class="text-center">
+						<span class="txt1">
+							Have already an account?
+						</span>
+
+						<a href="login" class="txt2 hov1">
+							Log in
+						</a>
+					</div>
+				</form>
+			</div>
 		</div>
-		<ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</div>
-    <!-- //main -->
     
     <script>
             $(document).ready(() => {
+
+
                 $('#regB').click((e) => {
                     e.preventDefault();
         
@@ -68,7 +129,7 @@
                         url: 'regC.php',
                         data: $('#registrationForm').serialize(),
                         success: (response) => {
-                            alert(response);
+                            // alert(response);
                             if(response == 1)
                             {
                                 alert("Account has been created!");
