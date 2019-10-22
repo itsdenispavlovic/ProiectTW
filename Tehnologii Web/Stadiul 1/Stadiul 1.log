@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  16 OCT 2019 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  19 OCT 2019 15:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -203,7 +203,7 @@ s/FMI.png>] (./Stadiul 1.toc)
 Here is how much of TeX's memory you used:
  1915 strings out of 492616
  27939 string characters out of 6129482
- 96269 words of memory out of 5000000
+ 96270 words of memory out of 5000000
  5834 multiletter control sequences out of 15000+600000
  5453 words of font info for 20 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -214,7 +214,7 @@ public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmssbx10.pfb>
-Output written on "Stadiul 1.pdf" (4 pages, 132181 bytes).
+Output written on "Stadiul 1.pdf" (4 pages, 133158 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
