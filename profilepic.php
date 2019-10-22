@@ -1,8 +1,31 @@
-<?php
+<style>
+#ppOverlay
+{
+    background-color: gray;
+    text-align: center;
+    padding: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: .5s ease;
+    display: none;
+}
 
+#tt
+{
+    cursor: pointer;
+}
+</style>
+<div id="ppOverlay">
+    <h5>Change profile picture</h5>
+</div>
+<?php
+include_once 'connDB.php';
+$uid = $_SESSION['user'];
 try
 {
-    $statement = $conn->prepare("SELECT * FROM profilepic WHERE uid=:uid");
+    $statement = $conn->prepare("SELECT * FROM user_settings WHERE uid=:uid");
     $statement->bindParam(':uid', $uid, PDO::PARAM_INT);
     $statement->execute();
     $row = $statement->fetch(PDO::FETCH_ASSOC);
@@ -15,7 +38,7 @@ try
     if($statement->rowCount() > 0)
     {
         ?>
-            <img id="" src="users/<?php echo $row['avatar']; ?>" width="200px alt="">
+            <img id="tt" class="mmm" src="<?php echo $row['avatar']; ?>" width="200px">
         <?php
     }
     else
@@ -25,16 +48,14 @@ try
         // 0 - male / 1 - female
         if($gender == 0)
         {
-        echo $gender;
-
         ?>
-            <img id="" src="users/maleDP.png" width="200px" alt="">
+            <img id="tt" class="mmm" src="users/maleDP.png" width="200px" alt="">
         <?php
         }
         else
         {
             ?>
-              <img id="" src="users/femaleDP.jpg" width="200px" alt="">
+              <img id="tt" class="mmm" src="users/femaleDP.jpg" width="200px" alt="">
             <?php
         }
     }
@@ -44,7 +65,6 @@ try
 }
 
 ?>
-
 <div class="container">
     <div class="row">
         <h3>
@@ -56,3 +76,15 @@ try
         </h4>
     </div>
 </div>
+<script>
+$(document).ready(() => {
+    $('#tt').click(() => {
+        $('#changePicture').modal('show');
+    });
+
+    $("#tt").hover(function(){
+        $('#ppOverlay').toggle();
+        // $(this).css("background-color", "yellow");
+    });
+});
+</script>

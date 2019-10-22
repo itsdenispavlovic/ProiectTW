@@ -55,7 +55,7 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form id="registrationForm" class="login100-form validate-form">
 					<span class="login100-form-title p-b-33">
-						New here?
+						New here? Let's get started!
 					</span>
 					<div class="wrap-input100 validate-input" data-validate = "Firstname is required">
 						<input class="input100" type="text" name="fname" placeholder="Firstname">

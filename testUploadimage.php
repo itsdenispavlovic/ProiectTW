@@ -12,6 +12,12 @@ if(isset($_SESSION['user']))
 
 
 $target_dir = "users//uid".$uid."//avatar//";
+
+if(!is_dir($target_dir))
+{
+    mkdir($target_dir, 0755, true);
+}
+
 $target_file = $target_dir . basename($_FILES['fileToUpload']['name']);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
