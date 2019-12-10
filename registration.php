@@ -135,7 +135,7 @@
                         url: 'regC.php',
                         data: $('#registrationForm').serialize(),
                         success: (response) => {
-                            alert(response);
+                            //alert(response);
                             if(response == 1)
                             {
                                 alert("Account has been created!");
