@@ -1,0 +1,21 @@
+.activation
+{
+  background-color: rgb(58, 58, 58);
+  border-radius: 25px;
+  padding: 25px;
+  color: white;
+}
+
+.activation input
+{
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    color: black;
+}
+
+.activation a, .activation a:hover
+{
+    color: yellow;
+    text-decoration: none;
+}

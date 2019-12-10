@@ -75,6 +75,12 @@
 						<span class="focus-input100-2"></span>
 					</div>
 
+					<div class="wrap-input100 validate-input" data-validate = "Email is required">
+						<input class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+
 					<div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100-1"></span>
@@ -129,7 +135,7 @@
                         url: 'regC.php',
                         data: $('#registrationForm').serialize(),
                         success: (response) => {
-                            // alert(response);
+                            alert(response);
                             if(response == 1)
                             {
                                 alert("Account has been created!");

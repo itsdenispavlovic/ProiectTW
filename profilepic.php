@@ -22,7 +22,15 @@
 </div>
 <?php
 include_once 'connDB.php';
-$uid = $_SESSION['user'];
+//
+if(isset($_GET['username']))
+{
+    $uid = $user->getUID($_GET['username']);
+}
+else
+{
+    $uid = $_SESSION['user'];
+}
 try
 {
     $statement = $conn->prepare("SELECT * FROM user_settings WHERE uid=:uid");
@@ -76,15 +84,57 @@ try
         </h4>
     </div>
 </div>
-<script>
-$(document).ready(() => {
-    $('#tt').click(() => {
-        $('#changePicture').modal('show');
-    });
+<?php
+     if(isset($_GET['username']))
+     {
+         if($user->getUID($_GET['username']) != $_SESSION['user'])
+         {
+             // Do not display
+             ?>
+            <style>
+            #tt
+            {
+                cursor: default !important;
+            }
+            </style>
+             <?php
+         }
+         else
+         {
+             // Show
+             ?>
+            <script>
+            $(document).ready(() => {
+                $('#tt').click(() => {
+                    $('#changePicture').modal('show');
+                });
 
-    $("#tt").hover(function(){
-        $('#ppOverlay').toggle();
-        // $(this).css("background-color", "yellow");
-    });
-});
-</script>
+                $("#tt").hover(function(){
+                    $('#ppOverlay').toggle();
+                    // $(this).css("background-color", "yellow");
+                });
+            });
+            </script>
+             <?php
+         }
+     }
+     else
+     {
+         // Show
+
+         ?>
+        <script>
+        $(document).ready(() => {
+            $('#tt').click(() => {
+                $('#changePicture').modal('show');
+            });
+
+            $("#tt").hover(function(){
+                $('#ppOverlay').toggle();
+                // $(this).css("background-color", "yellow");
+            });
+        });
+        </script>
+         <?php
+     }
+?>

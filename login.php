@@ -111,6 +111,7 @@
                 data: $('#loginForm').serialize(),
                 success: (response) => {
                     // alert(response);
+					// alert(response);
                     if(response == 1)
                     {
                         // alert("Is now logged in!");

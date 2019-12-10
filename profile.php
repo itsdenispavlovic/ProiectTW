@@ -1,6 +1,12 @@
 <?php 
 include 'header.php'; 
 $active = 1;
+
+// if user is not logged in, redirect him to te log in page
+if(!$user->isLoggedin())
+{
+  $user->redirect('login');
+}
 ?>
 
 <!-- Content -->

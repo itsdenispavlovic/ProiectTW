@@ -4,7 +4,14 @@
 
         // foreach
         include_once 'connDB.php';
-        $uid = $_SESSION['user'];
+        if(isset($_GET['username']))
+        {
+            $uid = $user->getUID($_GET['username']);
+        }
+        else
+        {
+            $uid = $_SESSION['user'];
+        }
         try
         {
           // momentan arata doar postarile pe care le posteaza user-ul logat
@@ -26,9 +33,9 @@
                   <?php echo $row['postContent']; ?>
                 </div>
                 <div class="footerPost">
-                  <a href="#" id="like<?php echo $row['id']; ?>">Like (N)</a> | <a href="#">Dislike (M)</a>
+                  <!-- <a href="#" id="like<?php echo $row['id']; ?>">Like (N)</a> | <a href="#">Dislike (M)</a> -->
                   <div class="ffRight">
-                    <a href="#">Share</a>
+                    <a href="/ProiectTW/profile.php?username=<?php echo $user->getUsername($uid); ?>"><?php echo $user->getUsername($row['uid']); ?></a>
                   </div>
                 </div>
                 <!-- Create a script for like and dislike for real time voting -->

@@ -1,5 +1,6 @@
 <?php
 include 'connDB.php'; 
+$activeUser = $user->activeUser($_SESSION['user']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,6 +14,7 @@ include 'connDB.php';
     <link rel="icon" type="image/png" href="Logo.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/activation.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,18 +50,35 @@ include 'connDB.php';
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form> -->
-            <ul class="nav navbar-nav navbar-right">
+            
+              <ul class="nav navbar-nav navbar-right">
+              <?php if($activeUser==1)
+                { 
+                ?>
               <li><a href="profile">Profile</a></li>
+
+            <?php
+                }
+                ?>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                <?php if($activeUser==1)
+                { 
+                ?>
+
                   <li><a href="accountSettings">Account settings</a></li>
                   <li><a href="#">Privacy settings</a></li>
                   <li role="separator" class="divider"></li>
+                  <?php
+                  }
+                  ?>
                   <li><a href="logout">Logout</a></li>
                 </ul>
               </li>
             </ul>
+              
+            
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
